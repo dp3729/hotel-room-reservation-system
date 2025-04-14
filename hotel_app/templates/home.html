@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="text-center">
+    <h1>Welcome to HotelEase</h1>
+    <p class="lead">Book your dream room with ease!</p>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Available Rooms</h2>
+        <div class="row">
+            {% for room in rooms %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ room.room_number }}</h5>
+                            <p class="card-text">
+                                Category: {{ room.category.name }} <br>
+                                Description: {{ room.category.description }} <br>
+                                Price: ${{ room.category.price_per_night }}/night
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No rooms are available currently.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

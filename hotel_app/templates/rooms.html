@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <h2 class="mb-4 text-center">Available Rooms</h2>
+    <div class="row">
+        {% for room in rooms %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    Room {{ room.room_number }}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ room.category.name }}</h5>
+                    <p class="card-text">{{ room.category.description }}</p>
+                    <p class="card-text"><strong>${{ room.category.price_per_night }} / night</strong></p>
+                    <p>Status: 
+                        {% if room.is_available %}
+                            <span class="badge bg-success">Available</span>
+                        {% else %}
+                            <span class="badge bg-danger">Booked</span>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">Book a Room</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group mb-3">
+      <label for="room">Select Room:</label>
+      <select name="room" id="room" class="form-control" required>
+        {% for room in rooms %}
+          <option value="{{ room.id }}">{{ room.room_number }} ({{ room.category.name }})</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="check_in">Check-in Date:</label>
+      <input type="date" name="check_in" class="form-control" required>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="check_out">Check-out Date:</label>
+      <input type="date" name="check_out" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Book Now</button>
+  </form>
+</div>
+{% endblock %}
